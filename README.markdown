@@ -3,23 +3,23 @@ MiniMam is a prototype (read: don't use this in production) media asset manageme
 
 ## API
 
-* Absolute scaling, providing the new width and height
-      /mam/350x263/pork.jpg
+	Absolute scaling, providing the new width and height
+	/mam/350x263/pork.jpg
+	
+	Relative scaling, e.g. creating an image half the size of the original
+	/mam/0.5/pork.jpg
 
-* Relative scaling, e.g. creating an image half the size of the original
-  /mam/0.5/pork.jpg
+	Cropping the image by providing the top left coordinates and cropped bounds
+	/mam/400,200-600x500/pork.jpg
 
-* Cropping the image by providing the top left coordinates and cropped bounds
-  /mam/400,200-600x500/pork.jpg
+	Scaling and cropping the image in one operation
+	/mam/700x525/200,100-350x250/pork.jpg
 
-* Scaling and cropping the image in one operation
-  /mam/700x525/200,100-350x250/pork.jpg
-
-* Just output an image
-  /mam/pork.jpg
+	Just output an image
+	/mam/pork.jpg
   
-* Folders inside the configured srcFolder are allowed
-  /mam/0.5/folder/pork.jpg	
+	Folders inside the configured srcFolder are allowed
+	/mam/0.5/folder/pork.jpg	
 
 ## Configuration	
 
