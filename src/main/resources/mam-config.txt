@@ -1,0 +1,19 @@
+# ATTENTION: This will be parsed as JSON after all lines starting with a # got removed, so you
+# need to adhere to the JSON grammar. All config data is written to the apps log file on
+# startup. 
+{
+
+# turns on debug mode. e.g. prints out stack traces on error
+'debug' : true,
+
+# will use ehcache to cache all image operations and their results
+# please make sure the ehcache.xml contains a sensible configuration
+'cacheOperations': false,
+
+# all images will be retrieved from this folder
+'srcFolder' : 'images/',
+
+# set jpeg quality, value must be between 0 and 1
+'jpegQuality': 0.5
+
+}
