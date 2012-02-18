@@ -4,7 +4,7 @@ MiniMam is a prototype (read: don't use this in production) media asset manageme
 ## API
 
 * Absolute scaling, providing the new width and height
-  /mam/350x263/pork.jpg
+      /mam/350x263/pork.jpg
 
 * Relative scaling, e.g. creating an image half the size of the original
   /mam/0.5/pork.jpg
