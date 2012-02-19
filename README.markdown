@@ -15,6 +15,9 @@ MiniMam is a prototype (read: don't use this in production) media asset manageme
 	Scaling and cropping the image in one operation
 	/mam/700x525/200,100-350x250/pork.jpg
 
+	Load images via http instead from srcFolder
+	/mam/0.25/http/brosinski.com/pork.jpg
+
 	Just output an image
 	/mam/pork.jpg
   

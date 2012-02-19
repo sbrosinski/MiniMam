@@ -6,6 +6,7 @@ import java.awt.image.RenderedImage;
 import java.awt.image.WritableRaster;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.Hashtable;
 import java.util.Iterator;
 
@@ -42,23 +43,21 @@ public class ImageManager {
 	public MamImage loadImage(String fileName) throws IOException {
 		logger.info("Reading image " + fileName);
 
-		// ImageIO.read() throws weird exceptions with certain JPEGs. Seems to
-		// be
-		// related to unknown image meta data, for the mean time we load the
-		// image
-		// using JAI and convert it to a BufferedImage, because that's what the
-		// scaler
-		// works with ...
-		//
-		// BufferedImage img = ImageIO.read(new File(config.getSrcFolder() +
-		// fileName));
-
-		BufferedImage img = convertRenderedImage(JAI.create("fileload",
-				config.getSrcFolder() + fileName));
-
-		logger.info("Image dimensions: " + img.getWidth() + "x"
-				+ img.getHeight());
+		BufferedImage img;
+		
+		if (fileName.startsWith("http")) {
+			String url = fileName.replace("http", "http:/");
+			logger.info("Retrieving img from url: " + url);
+			img = convertRenderedImage(JAI.create("url", new URL(url)));
+		} else {
+			logger.info("Retrieving img from file: " + config.getSrcFolder() + fileName);
+			img = convertRenderedImage(JAI.create("fileload", config.getSrcFolder() + fileName));
+		}
+		
+		logger.info("Original image dimensions: " + img.getWidth() + "x" + img.getHeight());
 		return new MamImage(img, fileName);
+		
+		
 	}
 
 	public void writeImage(MamImage img, OutputStream os) throws IOException {
@@ -87,6 +86,17 @@ public class ImageManager {
 		writer.dispose();
 	}
 
+	
+	// ImageIO.read() throws weird exceptions with certain JPEGs. Seems to
+	// be
+	// related to unknown image meta data, for the mean time we load the
+	// image
+	// using JAI and convert it to a BufferedImage, because that's what the
+	// scaler
+	// works with ...
+	//
+	// BufferedImage img = ImageIO.read(new File(config.getSrcFolder() +
+	// fileName));
 	private BufferedImage convertRenderedImage(RenderedImage img) {
 		if (img instanceof BufferedImage) {
 			return (BufferedImage) img;
