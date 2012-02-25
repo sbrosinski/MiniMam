@@ -154,4 +154,11 @@
 
 		</plugins>
 	</build>
+
+
+	<scm>
+		<connection>scm:git:git@github.com:sbrosinski/MiniMam.git</connection>
+		<url>scm:git:git@github.com:sbrosinski/MiniMam.git</url>
+		<developerConnection>scm:git:git@github.com:sbrosinski/MiniMam.git</developerConnection>
+  	</scm>	
 </project>
