@@ -72,6 +72,13 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.13</version>
 		</dependency>
+		<dependency>
+			<groupId>com.jhlabs</groupId>
+			<artifactId>JhlabsFilters</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>			
+			<systemPath>${basedir}/lib/jhlabs_filters.jar</systemPath>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>mam</finalName>
@@ -114,16 +121,16 @@
 				<configuration>
 					<contextPath>/mam</contextPath>
 					<scanIntervalSeconds>3</scanIntervalSeconds>
-					<systemProperties> 
-            			<systemProperty> 
-              				<name>slf4j</name> 
-              				<value>false</value> 
-            			</systemProperty> 
-            			<systemProperty> 
-              				<name>log4j.configuration</name> 
-              				<value>./classes/log4j.properties</value> 
-            			</systemProperty> 
-					</systemProperties> 
+					<systemProperties>
+						<systemProperty>
+							<name>slf4j</name>
+							<value>false</value>
+						</systemProperty>
+						<systemProperty>
+							<name>log4j.configuration</name>
+							<value>./classes/log4j.properties</value>
+						</systemProperty>
+					</systemProperties>
 				</configuration>
 				<dependencies>
 					<dependency>

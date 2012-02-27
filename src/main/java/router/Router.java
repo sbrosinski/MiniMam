@@ -2,6 +2,7 @@ package router;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,19 +35,23 @@ public class Router {
 	
 	public RouterResult execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		String path = request.getPathInfo();
+		
+		@SuppressWarnings("unchecked")
+		Map<String, String[]> requestParams = (Map<String, String[]>) request.getParameterMap();
+		
 		for (Route route : routes) {
 			
 			if (route.match(path)) {
 				logger.info("Found matching route: " + route);				
 
 				RouterResult result = RouterResult.noResult();
-				if (route.getOp() instanceof CachableRouterOp) {
+				if ((route.getOp() instanceof CachableRouterOp) && config.cacheOperations) {
 				
 					Cache cache = CacheManager.getInstance().getCache("routerResult");
 					Element cacheElement = cache.get(path);
 										
-					if (cacheElement == null || !config.cacheOperations) {
-						result = route.execute(path);
+					if (cacheElement == null) {
+						result = route.execute(path, requestParams);
 						cache.put(new Element(path, result));
 					} else {
 						result = (RouterResult) cacheElement.getObjectValue();
@@ -54,7 +59,7 @@ public class Router {
 				
 				
 				} else {
-					result = route.execute(path);
+					result = route.execute(path, requestParams);
 				}
 				
 				return result;

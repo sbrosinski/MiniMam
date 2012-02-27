@@ -17,7 +17,7 @@ public class ImageRouterResult extends RouterResult {
 	@Override
 	public void write(HttpServletResponse response) throws IOException {
 		MamImage image = (MamImage) getResult();
-		response.setContentType(image.getImageType().mimeType());
+		response.setContentType(image.getSrcImageType().mimeType());
 		setCacheHeaders(response);
 		ImageManager.get().writeImage(image, response.getOutputStream());
 		

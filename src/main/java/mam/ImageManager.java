@@ -44,6 +44,8 @@ public class ImageManager {
 		logger.info("Reading image " + fileName);
 
 		BufferedImage img;
+		String realFileName = fileName;
+
 		
 		if (fileName.startsWith("http")) {
 			String url = fileName.replace("http", "http:/");
@@ -61,9 +63,9 @@ public class ImageManager {
 	}
 
 	public void writeImage(MamImage img, OutputStream os) throws IOException {
-		if (img.getImageType().equals(MamImageType.JPG)) {
+		if (img.getDstImageType().equals(MamImageType.JPG)) {
 			writeCompressedJpeg(img, os);
-		} else if (img.getImageType().equals(MamImageType.PNG)){
+		} else if (img.getDstImageType().equals(MamImageType.PNG)){
 			ImageIO.write(img.getImage(), "png", os);
 		}
 	}

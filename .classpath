@@ -16,6 +16,7 @@
   <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-io/7.4.5.v20110725/jetty-io-7.4.5.v20110725.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-servlets/7.4.5.v20110725/jetty-servlets-7.4.5.v20110725.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-util/7.4.5.v20110725/jetty-util-7.4.5.v20110725.jar"/>
+  <classpathentry kind="lib" path="lib/jhlabs_filters.jar"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/4.8.1/junit-4.8.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.13/log4j-1.2.13.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar"/>

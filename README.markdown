@@ -34,8 +34,9 @@ You may use the provided Maven Jetty plugin or deploy it as a war.
 
 	mvn jetty:run
 
-Providing logging configuration:
+Providing logging configuration and turning on debug:
 
+	export MAVEN_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=4000,server=y,suspend=y"
 	mvn -Dlog4j.configuration=file:./target/classes/log4j.properties jetty:run
 
 ## Known issues 

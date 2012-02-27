@@ -1,5 +1,15 @@
 package mam;
 
+import java.awt.image.BufferedImageOp;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
+import router.RouteParams;
+
+import com.jhlabs.image.GaussianFilter;
+import com.jhlabs.image.GrayscaleFilter;
 import com.mortennobel.imagescaling.DimensionConstrain;
 
 public class ImageParams {
@@ -7,6 +17,26 @@ public class ImageParams {
 	public int width, height, cropX, cropY, cropWidth, cropHeight;
 	public float relativeScale;
 	public String fileName;
+	private RouteParams routeParams;
+	
+	
+	public ImageParams(RouteParams routeParams) {
+		this.routeParams = routeParams;
+	}
+	
+	public List<BufferedImageOp> getFilters() {
+		List<BufferedImageOp> filters = new ArrayList<BufferedImageOp>();
+		
+		if (StringUtils.isNotEmpty(routeParams.get("gray"))) {
+			filters.add(new GrayscaleFilter());
+		}
+		if (StringUtils.isNotEmpty(routeParams.get("blur"))) {
+			float radius = Float.parseFloat(routeParams.get("blur"));
+			filters.add(new GaussianFilter(radius));
+		}
+		
+		return filters;
+	}
 	
 	public void validate() {
 		

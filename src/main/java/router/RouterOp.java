@@ -1,10 +1,9 @@
 package router;
 
-import java.util.Map;
 
 public class RouterOp {
 
-	public RouterResult execute(Map<String, String> params) throws Throwable {
+	public RouterResult execute(RouteParams params) throws Throwable {
 		return RouterResult.noResult();
 	}
 

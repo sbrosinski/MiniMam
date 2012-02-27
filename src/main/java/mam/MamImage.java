@@ -1,33 +1,46 @@
 package mam;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.util.List;
 
+import com.jhlabs.image.GrayscaleFilter;
+import com.jhlabs.image.ImageUtils;
+import com.mortennobel.imagescaling.AdvancedResizeOp;
 import com.mortennobel.imagescaling.DimensionConstrain;
 import com.mortennobel.imagescaling.ResampleOp;
-import com.mortennobel.imagescaling.AdvancedResizeOp;
 
 public class MamImage {
 
 	private BufferedImage img;
 	private String fileName;
-	private MamImageType imageType;
+	private MamImageType srcImageType;
+	private MamImageType dstImageType;
 	
 	public MamImage(BufferedImage img, String fileName) {
 		this.img = img;
 		this.fileName = fileName;
-		this.imageType = determineImageType(fileName);
+		
+		determineImageType(fileName);
 	}
 
-	public MamImageType determineImageType(String fileName) {
-		MamImageType imageType;
-		if (fileName.endsWith(".jpg")) {
-			imageType = MamImageType.JPG;
+	private void determineImageType(String fileName) {
+		if (fileName.endsWith(".jpg.png")) {
+			srcImageType = MamImageType.JPG;
+			dstImageType = MamImageType.PNG;			
+		} else if (fileName.endsWith(".png.jpg")) {
+			srcImageType = MamImageType.PNG;
+			dstImageType = MamImageType.JPG;
+		} else if (fileName.endsWith(".jpg")) {
+			srcImageType = MamImageType.JPG;
+			dstImageType = MamImageType.JPG;
 		} else if (fileName.endsWith(".png")) {
-			imageType = MamImageType.PNG;
+			srcImageType = MamImageType.JPG;
+			dstImageType = MamImageType.JPG;
 		} else {
-			imageType = MamImageType.UNDEFINED;
+			srcImageType = MamImageType.UNDEFINED;
+			dstImageType = MamImageType.UNDEFINED;
 		}
-		return imageType;
 	}
 
 	public void scale(DimensionConstrain dimensionConstrain) {
@@ -44,12 +57,27 @@ public class MamImage {
 		this.img = img.getSubimage(x, y, width, height);
 	}
 	
+	public void grayscale() {
+		GrayscaleFilter filter = new GrayscaleFilter();
+		this.img = filter.filter(img, ImageUtils.backgroundImage);
+	}
+	
 	public BufferedImage getImage() {
 		return this.img;
 	}
 	
-	public MamImageType getImageType() {
-		return this.imageType;
+	public MamImageType getSrcImageType() {
+		return this.srcImageType;
+	}
+
+	public void applyFilters(List<BufferedImageOp> filters) {
+		for (BufferedImageOp filter : filters) {
+			this.img = filter.filter(img, ImageUtils.backgroundImage);
+		}		
+	}
+
+	public MamImageType getDstImageType() {
+		return this.dstImageType;
 	}
 	
 }

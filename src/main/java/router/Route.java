@@ -1,9 +1,10 @@
 package router;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
 
 public class Route {
 
@@ -21,13 +22,17 @@ public class Route {
 		return pattern.matcher(path).matches();
 	}
 
-	public RouterResult execute(String path) throws Throwable {
+	public RouterResult execute(String path, Map<String, String[]> requestParams) throws Throwable {
 		Matcher matcher = pattern.matcher(path);
 		if (matcher.matches()) {
 			
-			Map<String, String> params = new HashMap<String, String>();
+			RouteParams params = new RouteParams();
 			for (int i = 1; i <= matcher.groupCount(); i++) {
-				params.put(paramNames[i-1],  matcher.group(i));
+				params.putRouteParam(paramNames[i-1],  matcher.group(i));
+			}
+			
+			for (String requestParamKey : requestParams.keySet()) {
+				params.putQueryParam(requestParamKey, StringUtils.join(requestParams.get(requestParamKey)));
 			}
 			
 			RouterResult result = RouterResult.noResult();
