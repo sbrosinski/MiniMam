@@ -3,7 +3,7 @@
 	<groupId>com.brosinski.minimam</groupId>
 	<artifactId>minimam</artifactId>
 	<packaging>war</packaging>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<name>MiniMam</name>
 	<repositories>
 		<repository>
