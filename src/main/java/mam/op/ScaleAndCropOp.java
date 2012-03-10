@@ -24,13 +24,12 @@ public class ScaleAndCropOp extends RouterOp implements CachableRouterOp {
 		ip.setCropHeight(params.get("cropHeight"));
 		ip.setFileName(params.get("fileName")); 
 		
-		MamImage img = ImageManager.get().loadImage(ip.fileName);
+		MamImage img = ImageManager.get().loadImage(ip.getFileName());
 		img.scale(ip.getAbsolutionDimensionConstrain());
-		img.crop(ip.cropX, ip.cropY, ip.cropWidth, ip.cropHeight);
+		img.crop(ip.getCropX(), ip.getCropY(), ip.getCropWidth(), ip.getCropHeight());
 		img.applyFilters(ip.getFilters());
 		
-		ImageRouterResult result = new ImageRouterResult(img);
-		return result;
+		return new ImageRouterResult(img);
 	}
 	
 }

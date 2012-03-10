@@ -33,7 +33,7 @@ public class Router {
 		routes.add(new Route(op, pattern, params));
 	}
 	
-	public RouterResult execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	public RouterResult execute(HttpServletRequest request, HttpServletResponse response) {
 		String path = request.getPathInfo();
 		
 		@SuppressWarnings("unchecked")

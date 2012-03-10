@@ -18,11 +18,10 @@ public class ShowImageOp extends RouterOp implements CachableRouterOp {
 		ImageParams ip = new ImageParams(params);
 		ip.setFileName(params.get("fileName")); 
 	
-		MamImage img = ImageManager.get().loadImage(ip.fileName);
+		MamImage img = ImageManager.get().loadImage(ip.getFileName());
 		img.applyFilters(ip.getFilters());
 		
-		ImageRouterResult result = new ImageRouterResult(img);
-		return result;
+		return new ImageRouterResult(img);
 	}
 	
 }

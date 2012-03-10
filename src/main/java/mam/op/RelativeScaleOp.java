@@ -20,12 +20,11 @@ public class RelativeScaleOp extends RouterOp implements CachableRouterOp {
 		ip.setRelativeScale(params.get("scale"));
 		ip.setFileName(params.get("fileName")); 
 	
-		MamImage img = ImageManager.get().loadImage(ip.fileName);
+		MamImage img = ImageManager.get().loadImage(ip.getFileName());
 		img.scale(ip.getRelativeDimensionConstrain());
 		img.applyFilters(ip.getFilters());
 		
-		ImageRouterResult result = new ImageRouterResult(img);
-		return result;
+		return new ImageRouterResult(img);
 	}
 	
 }

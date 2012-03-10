@@ -51,8 +51,9 @@ public class MamImage {
 	}
 
 	public void crop(int x, int y, int width, int height) {
-		if (x < 0 || img.getWidth() < x + width || y < 0 || img.getHeight() < y + height) 
+		if (x < 0 || img.getWidth() < x + width || y < 0 || img.getHeight() < y + height)  {
 			throw new IllegalArgumentException("Crop frame is outside of image bounds");
+		}	
 		
 		this.img = img.getSubimage(x, y, width, height);
 	}
@@ -80,4 +81,7 @@ public class MamImage {
 		return this.dstImageType;
 	}
 	
+	public String getFileName() {
+		return fileName;
+	}
 }

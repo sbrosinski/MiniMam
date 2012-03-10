@@ -14,9 +14,6 @@ import mam.op.CropOp;
 import mam.op.RelativeScaleOp;
 import mam.op.ScaleAndCropOp;
 import mam.op.ShowImageOp;
-
-import org.apache.log4j.Logger;
-
 import router.Router;
 import router.RouterConfig;
 import router.RouterResult;
@@ -24,7 +21,6 @@ import router.RouterResult;
 public class ImageServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static Logger logger = Logger.getLogger(ImageServlet.class.getName());
 	private Router router;
 	
 	public void init() {
@@ -60,14 +56,8 @@ public class ImageServlet extends HttpServlet {
 	}
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		try {
 			RouterResult result = router.execute(request, response);
 			result.write(response);
-		} catch (Throwable e) {
-			throw new ServletException(e);
-		}
-    	
 	}
 
 

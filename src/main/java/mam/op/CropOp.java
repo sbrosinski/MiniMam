@@ -22,12 +22,11 @@ public class CropOp extends RouterOp implements CachableRouterOp {
 		ip.setCropHeight(params.get("cropHeight"));
 		ip.setFileName(params.get("fileName")); 
 		
-		MamImage img = ImageManager.get().loadImage(ip.fileName);
-		img.crop(ip.cropX, ip.cropY, ip.cropWidth, ip.cropHeight);
+		MamImage img = ImageManager.get().loadImage(ip.getFileName());
+		img.crop(ip.getCropX(), ip.getCropY(), ip.getCropWidth(), ip.getCropHeight());
 		img.applyFilters(ip.getFilters());
 		
-		ImageRouterResult result = new ImageRouterResult(img);
-		return result;
+		return new ImageRouterResult(img);
 	}
 	
 }

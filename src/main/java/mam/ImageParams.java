@@ -14,9 +14,9 @@ import com.mortennobel.imagescaling.DimensionConstrain;
 
 public class ImageParams {
 
-	public int width, height, cropX, cropY, cropWidth, cropHeight;
-	public float relativeScale;
-	public String fileName;
+	private int width, height, cropX, cropY, cropWidth, cropHeight;
+	private float relativeScale;
+	private String fileName;
 	private RouteParams routeParams;
 	
 	
@@ -81,4 +81,44 @@ public class ImageParams {
 	public DimensionConstrain getRelativeDimensionConstrain() {
 		return DimensionConstrain.createRelativeDimension(relativeScale);
 	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public int getCropX() {
+		return cropX;
+	}
+
+	public int getCropY() {
+		return cropY;
+	}
+
+	public int getCropWidth() {
+		return cropWidth;
+	}
+
+	public int getCropHeight() {
+		return cropHeight;
+	}
+
+	public float getRelativeScale() {
+		return relativeScale;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public RouteParams getRouteParams() {
+		return routeParams;
+	}
+
+	
+
 }
+

@@ -22,7 +22,7 @@ public class Route {
 		return pattern.matcher(path).matches();
 	}
 
-	public RouterResult execute(String path, Map<String, String[]> requestParams) throws Throwable {
+	public RouterResult execute(String path, Map<String, String[]> requestParams) {
 		Matcher matcher = pattern.matcher(path);
 		if (matcher.matches()) {
 			
