@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Map;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -44,8 +45,6 @@ public class ImageManager {
 		logger.info("Reading image " + fileName);
 
 		BufferedImage img;
-		String realFileName = fileName;
-
 		
 		if (fileName.startsWith("http")) {
 			String url = fileName.replace("http", "http:/");
@@ -109,7 +108,7 @@ public class ImageManager {
 		WritableRaster raster = cm
 				.createCompatibleWritableRaster(width, height);
 		boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
-		Hashtable<String, Object> properties = new Hashtable<String, Object>();
+		Map<String, Object> properties = new Hashtable<String, Object>();
 		String[] keys = img.getPropertyNames();
 		if (keys != null) {
 			for (int i = 0; i < keys.length; i++) {
@@ -117,7 +116,7 @@ public class ImageManager {
 			}
 		}
 		BufferedImage result = new BufferedImage(cm, raster,
-				isAlphaPremultiplied, properties);
+				isAlphaPremultiplied, (Hashtable<String, Object>)properties);
 		img.copyData(raster);
 		return result;
 	}

@@ -13,13 +13,11 @@ import net.sf.ehcache.Element;
 
 import org.apache.log4j.Logger;
 
-
-
 public class Router {
 
 	private static Logger logger = Logger.getLogger(Router.class.getName());
-	List<Route> routes = new ArrayList<Route>();
-	RouterConfig config;
+	private List<Route> routes = new ArrayList<Route>();
+	private RouterConfig config;
 
 	public Router(RouterConfig config) {
 		this.config = config;

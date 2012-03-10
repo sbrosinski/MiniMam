@@ -5,9 +5,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 public class Route {
 
+	private static Logger logger = Logger.getLogger(Route.class
+			.getName());
+	
 	private Pattern pattern;
 	private RouterOp op;
 	private String[] paramNames;
@@ -40,6 +44,9 @@ public class Route {
 			try {
 				result = op.execute(params);
 			} catch (Throwable t) {
+				// capture any exception and return error page, showing exception only
+				// in debug mode
+				logger.error("Route operation failed", t);
 				result = RouterResult.errorResult(t);
 			}
 							

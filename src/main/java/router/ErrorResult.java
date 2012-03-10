@@ -11,6 +11,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 public class ErrorResult extends RouterResult {
 
 	private static final long serialVersionUID = 1L;
+	private static int HTTP_BAD_RESULT = 400;
 	
 	public ErrorResult(Object result) {
 		super(result);
@@ -19,7 +20,7 @@ public class ErrorResult extends RouterResult {
 	@Override
 	public void write(HttpServletResponse response) throws IOException {
 		response.setContentType("text/plain");
-		response.setStatus(400); // client error, bad request
+		response.setStatus(HTTP_BAD_RESULT); 
 		setNoCacheHeaders(response);
 		
 		response.getWriter().append(getErrorText());
