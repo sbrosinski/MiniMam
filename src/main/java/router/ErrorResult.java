@@ -11,7 +11,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 public class ErrorResult extends RouterResult {
 
 	private static final long serialVersionUID = 1L;
-	private static int HTTP_BAD_RESULT = 400;
+	private static final int HTTP_BAD_RESULT = 400;
 	
 	public ErrorResult(Object result) {
 		super(result);

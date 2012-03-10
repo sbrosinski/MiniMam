@@ -51,7 +51,7 @@ public class ImageServlet extends HttpServlet {
 
 	private RouterConfig getRouterConfig() {
 		RouterConfig routerConf = new RouterConfig();
-		routerConf.cacheOperations = MamConfigManager.get().getConfig().isCacheOperations();
+		routerConf.setCacheOperations(MamConfigManager.get().getConfig().isCacheOperations());
 		return routerConf;
 	}
 	

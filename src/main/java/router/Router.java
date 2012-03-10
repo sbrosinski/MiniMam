@@ -43,7 +43,7 @@ public class Router {
 				logger.info("Found matching route: " + route);				
 
 				RouterResult result = RouterResult.noResult();
-				if ((route.getOp() instanceof CachableRouterOp) && config.cacheOperations) {
+				if ((route.getOp() instanceof CachableRouterOp) && config.isCacheOperations()) {
 				
 					Cache cache = CacheManager.getInstance().getCache("routerResult");
 					Element cacheElement = cache.get(path);

@@ -2,6 +2,15 @@ package router;
 
 public class RouterConfig {
 
-	public boolean cacheOperations = false;
+	private boolean cacheOperations = false;
+	
+	public void setCacheOperations(boolean cacheOperations) {
+		this.cacheOperations = cacheOperations;
+	}
+
+	public boolean isCacheOperations() {
+		return cacheOperations;
+	}
+	
 	
 }
